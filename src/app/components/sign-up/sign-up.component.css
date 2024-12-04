@@ -1,0 +1,113 @@
+/* Global styling for the body */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f6f9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;   /* Horizontally center */
+  align-items: center;       /* Vertically center */
+  height: 100vh;             /* Full viewport height */
+}
+
+.signup-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+/* Card styling */
+.card {
+  width: 100%;
+  max-width: 400px;
+  border: none;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* Card body padding */
+.card-body {
+  padding: 20px;
+}
+
+/* Title of the form */
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center; /* Center the title */
+}
+
+/* Spacing between form fields */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Input field styling */
+.form-control {
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding-left: 12px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+/* Focus state for inputs */
+.form-control:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* Label styling */
+label {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Button styling */
+.btn-info {
+  background-color: #3498db;
+  color: white;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-info:hover {
+  background-color: #2980b9;
+}
+
+/* Disable button style */
+button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Button full width */
+.btn-block {
+  width: 100%;
+}
+
+/* Spacing between button and form fields */
+.mt-4 {
+  margin-top: 20px;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .card {
+    margin: 20px;
+    width: 90%;
+  }
+}

@@ -1,40 +1,52 @@
 #!/bin/bash
 
-# Variables
-PROJECT_DIR="/home/shorouk/DevOps/Client/DevOps_MVN_Client" # Replace with the path to your Angular project directory
-BUILD_OUTPUT_DIR="dist"                     # Build output directory (default for Angular CLI is 'dist/')
-LOG_FILE="build.log"                        # Log file location
+# Exit on any error
+set -e
 
-# Check if Node.js and npm are installed
-if ! command -v node &> /dev/null || ! command -v npm &> /dev/null; then
-  echo "Error: Node.js and npm must be installed to build the application."
-  exit 1
-fi
+# Function to display a message
+function print_message() {
+  echo -e "\n========================================"
+  echo "$1"
+  echo "========================================"
+}
 
-# Navigate to the project directory
-if [ ! -d "$PROJECT_DIR" ]; then
-  echo "Error: Project directory $PROJECT_DIR does not exist!"
-  exit 1
-fi
+# Check if Node.js and npm are installed, and install them if necessary
+function install_node_and_npm() {
+  if ! command -v node &> /dev/null; then
+    print_message "Node.js not found. Installing Node.js and npm..."
+    # Add NodeSource PPA and install Node.js
+    curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+  else
+    print_message "Node.js is already installed: $(node -v)"
+  fi
 
-cd "$PROJECT_DIR" || exit 1
+  if ! command -v npm &> /dev/null; then
+    print_message "npm not found. Please check your Node.js installation."
+    exit 1
+  else
+    print_message "npm is already installed: $(npm -v)"
+  fi
+}
 
-# Install dependencies
-echo "Installing dependencies..."
-npm install > "$LOG_FILE" 2>&1
+# Path to the Angular project (customize as needed)
+PROJECT_PATH="/home/shorouk/DevOps/Client/DevOps_MVN_Client"
 
-if [ $? -ne 0 ]; then
-  echo "Error: Failed to install dependencies. Check $LOG_FILE for details."
-  exit 1
-fi
+# Install Node.js and npm if not installed
+install_node_and_npm
 
-# Build the application
-echo "Building Angular application..."
-npm run build > "$LOG_FILE" 2>&1
+# Navigate to the Angular project directory
+print_message "Navigating to Angular project directory..."
+cd "$PROJECT_PATH"
 
-if [ $? -eq 0 ]; then
-  echo "Build successful. Build output is located in the '$BUILD_OUTPUT_DIR' directory."
-else
-  echo "Error: Build failed. Check $LOG_FILE for details."
-  exit 1
-fi
+# Install Node.js dependencies
+print_message "Installing Node.js dependencies..."
+npm install
+
+# Build the Angular application
+print_message "Building Angular application..."
+npm run build -- --prod
+
+# Serve the application
+print_message "Starting Angular application with 'ng serve'..."
+npx ng serve --host 0.0.0.0 --port 4200

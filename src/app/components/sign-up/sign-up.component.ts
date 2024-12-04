@@ -4,6 +4,7 @@ import {UserModel} from "../../models/user-model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../services/user-service";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {BaseResponse} from "../../models/base-response";
 
 @Component({
   selector: 'app-sign-up',
@@ -16,10 +17,10 @@ export class SignUpComponent implements OnInit{
   form = new FormGroup({
     email: new FormControl('',  [Validators.required]),
     password: new FormControl('',  [Validators.required]),
+    name: new FormControl('',  [Validators.required]),
   });
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private userService: UserService) {
   }
@@ -28,8 +29,24 @@ export class SignUpComponent implements OnInit{
     const userModel = new UserModel(
       this.form.get('email')?.value as string,
       this.form.get('password')?.value as string,
+      this.form.get('name')?.value as string,
     );
-    this.userService.save(userModel).subscribe(result => this.gotoUserList());
+
+    this.userService.save(userModel).subscribe({
+      next: (response: BaseResponse) => {
+        if (response.replyCode === "200") {
+          console.log('Navigation triggered to /welcome');
+          this.router.navigate(['/welcome']).then(success => {
+            console.log('Navigation success:', success);
+          }).catch(err => {
+            console.error('Navigation error:', err);
+          });
+        }
+      },
+      error: (err) => {
+        console.error('HTTP Error:', err);
+      },
+    });
   }
 
   gotoUserList() {

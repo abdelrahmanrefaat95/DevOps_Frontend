@@ -11,15 +11,15 @@ export class UserService {
   private usersUrl: string;
 
   constructor(private http: HttpClient) {
-    this.usersUrl = 'http://localhost:8080/DevOpsBuildToolDemo/user/';
+    this.usersUrl = 'http://localhost:8090/DevOpsBuildToolDemo/user/';
   }
 
   public findAll(): Observable<UserModel[]> {
     return this.http.get<UserModel[]>(this.usersUrl+"getAll");
   }
 
-  public save(user: UserModel): Observable<UserModel> {
-    return this.http.post<UserModel>(this.usersUrl, user);
+  public save(user: UserModel): Observable<BaseResponse> {
+    return this.http.post<BaseResponse>(this.usersUrl+"create", user);
   }
 
   public login(user: UserModel): Observable<BaseResponse> {

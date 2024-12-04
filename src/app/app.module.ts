@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import {UserService} from "./services/user-service";
 import {WelcomeComponent} from "./components/welcome/welcome.component";
 
 @NgModule({
@@ -20,7 +19,6 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    // WelcomeComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

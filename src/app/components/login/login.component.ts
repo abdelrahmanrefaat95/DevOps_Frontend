@@ -22,22 +22,55 @@ export class LoginComponent implements OnInit{
     email: new FormControl('',  [Validators.required]),
     password: new FormControl('',  [Validators.required]),
   });
-
-
   public login(): void {
     if (this.form.valid) {
       const userModel = new UserModel(
         this.form.get('email')?.value as string,
-        this.form.get('password')?.value as string,
+        this.form.get('password')?.value as string
       );
-        userModel.id = 0;
-          this.userService.login(userModel).subscribe((response: BaseResponse) => {
-            if(response.replyCode === 200){
-              this.router.navigate(['/welcome']);
-            }
-        });
-      }
+      userModel.id = 0;
+
+      this.userService.login(userModel).subscribe({
+        next: (response: BaseResponse) => {
+          if (response.replyCode === "200") {
+            console.log('Navigation triggered to /welcome');
+            this.router.navigate(['/welcome']).then(success => {
+              console.log('Navigation success:', success);
+            }).catch(err => {
+              console.error('Navigation error:', err);
+            });
+          }else {
+            alert("Login Failed , Email or Password Error");
+          }
+        },
+        error: (err) => {
+          console.error('HTTP Error:', err);
+        },
+      });
+    }
   }
+
+public navigateToSignUp(){
+  this.router.navigate(['/signUp']).then(success => {
+    console.log('Navigation success:', success);
+  }).catch(err => {
+    console.error('Navigation error:', err);
+  });
+}
+  // public login(): void {
+  //   if (this.form.valid) {
+  //     const userModel = new UserModel(
+  //       this.form.get('email')?.value as string,
+  //       this.form.get('password')?.value as string,
+  //     );
+  //       userModel.id = 0;
+  //         this.userService.login(userModel).subscribe((response: BaseResponse) => {
+  //           if(response.replyCode === 200){
+  //             this.router.navigate(['/welcome']);
+  //           }
+  //       });
+  //     }
+  // }
 
   ngOnInit(): void {
   }
