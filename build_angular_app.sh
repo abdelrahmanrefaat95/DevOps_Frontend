@@ -45,7 +45,7 @@ npm install
 
 # Build the Angular application
 print_message "Building Angular application..."
-npm run build -- --prod
+npm run build
 
 # Serve the application
 print_message "Starting Angular application with 'ng serve'..."
