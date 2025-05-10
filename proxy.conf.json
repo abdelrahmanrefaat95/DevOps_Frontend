@@ -1,0 +1,10 @@
+{
+  "/DevOpsBuildToolDemo": {
+    "target": "http://localhost:8000/DevOpsBuildToolDemo",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/DevOpsBuildToolDemo": ""
+    }
+  }
+}

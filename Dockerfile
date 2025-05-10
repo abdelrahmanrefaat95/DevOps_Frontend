@@ -23,10 +23,11 @@ FROM nginx:alpine
 COPY --from=build /app/dist/angularclient /usr/share/nginx/html
 
 # Copy a custom Nginx configuration file, if needed
-# COPY nginx.conf /etc/nginx/nginx.conf
+#COPY nginx.conf /etc/nginx/nginx.conf
 
 # Expose the port Nginx is running on
 EXPOSE 80
-
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s \
+    CMD curl -f http://localhost/ || exit 1
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]

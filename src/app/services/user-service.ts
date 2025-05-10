@@ -15,6 +15,7 @@ export class UserService {
   }
 
   public findAll(): Observable<UserModel[]> {
+    console.log('Making request to:', this.usersUrl + 'getAll');
     return this.http.get<UserModel[]>(this.usersUrl+"getAll");
   }
 
