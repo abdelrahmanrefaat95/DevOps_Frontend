@@ -11,7 +11,7 @@ export class UserService {
   private usersUrl: string;
 
   constructor(private http: HttpClient) {
-    this.usersUrl = 'http://10.10.10.131:8040/DevOpsBuildToolDemo/user/';
+    this.usersUrl = 'http://app:8040/DevOpsBuildToolDemo/user/';
   }
 
   public findAll(): Observable<UserModel[]> {
