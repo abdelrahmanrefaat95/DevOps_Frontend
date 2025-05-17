@@ -1,24 +1,23 @@
-@Library('devops-library') _  // Load the shared library
 pipeline {
     agent {
-        docker {
-            image 'node:20' // Official Node.js image with npm included
-        }
-
-    stages {    
-        stage('Hello') {
-            steps {
-                script {
-                    hello()  // Calls vars/hello.groovy
-                }
-            }
-        }
-        stage('Install FE') {
-            steps {
-                script {
-                    ngInstall()  // Calls vars/mvnInstall.groovy
-                }
-            }
-        }
-    }
-}
+      docker {
+          image 'node:20' // Official Node.js image with npm included
+      }
+  }
+  stages {
+      stage('Hello') {
+          steps {
+              script {
+                  hello()  // Calls vars/hello.groovy
+              }
+          }
+      }
+    stage('Install FE') {
+          steps {
+              script {
+                  ngInstall()  // Calls vars/mvnInstall.groovy
+              }
+          }
+      }
+      }
+  }
