@@ -11,7 +11,6 @@ pipeline {
                 }
             }
         }
-
         stage('Install Backend') {
             steps {
                 script {
