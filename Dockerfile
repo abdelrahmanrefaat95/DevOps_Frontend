@@ -7,6 +7,7 @@ RUN npm install -g @angular/cli
 WORKDIR /app
 
 COPY . .
+
 RUN npm install
 
 # Serve the Angular app using Angular CLI's development server
