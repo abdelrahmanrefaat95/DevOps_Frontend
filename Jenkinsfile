@@ -21,5 +21,12 @@ pipeline {
                 }
             }
         }
+        stage('Install FE') {
+            steps {
+                script {
+                    ngStart()  // Calls vars/mvnInstall.groovy
+                }
+            }
+        }
       }
   }
