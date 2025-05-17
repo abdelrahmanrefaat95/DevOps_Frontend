@@ -5,6 +5,7 @@ pipeline {
   agent {
             label 'ubuntu-slave'  
         }
+  
   stages {
       stage('Hello') {
           steps {
