@@ -5,6 +5,7 @@ RUN npm install -g @angular/cli
 
 # Set up your application
 WORKDIR /app
+
 COPY . .
 RUN npm install
 
