@@ -12,7 +12,7 @@ pipeline {
                 }
             }
         }
-        stage('Install Backend') {
+        stage('Install FE') {
             steps {
                 script {
                     ngInstall()  // Calls vars/mvnInstall.groovy
