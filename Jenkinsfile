@@ -1,8 +1,9 @@
 @Library('devops-library') _  // Load the shared library
 pipeline {
+  
   agent {
-                label 'ubuntu-slave'  
-            }
+            label 'ubuntu-slave'  
+        }
   stages {
       stage('Hello') {
           steps {
