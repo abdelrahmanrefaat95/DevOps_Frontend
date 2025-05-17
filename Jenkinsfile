@@ -1,6 +1,8 @@
 @Library('devops-library') _  // Load the shared library
 pipeline {
-    agent any
+    docker {
+            image 'node:20' // Official Node.js image with npm included
+        }
 
     stages {    
         stage('Hello') {
