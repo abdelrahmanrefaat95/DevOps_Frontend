@@ -15,7 +15,7 @@ pipeline {
         stage('Install Backend') {
             steps {
                 script {
-                    mvnInstall()  // Calls vars/mvnInstall.groovy
+                    ngInstall()  // Calls vars/mvnInstall.groovy
                 }
             }
         }
