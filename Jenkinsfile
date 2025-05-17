@@ -1,6 +1,7 @@
 @Library('devops-library') _  // Load the shared library
 pipeline {
-    docker {
+    agent {
+        docker {
             image 'node:20' // Official Node.js image with npm included
         }
 
