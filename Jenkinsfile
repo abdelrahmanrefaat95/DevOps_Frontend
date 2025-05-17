@@ -1,9 +1,7 @@
 pipeline {
-    agent {
-      docker {
-          image 'node:20' // Official Node.js image with npm included
-      }
-  }
+  agent {
+                label 'ubuntu-slave'  
+            }
   stages {
       stage('Hello') {
           steps {
