@@ -14,12 +14,12 @@ pipeline {
               }
           }
       }
-    stage('Install FE') {
-          steps {
-              script {
-                  ngInstall()  // Calls vars/mvnInstall.groovy
-              }
-          }
-      }
+      stage('Install FE') {
+            steps {
+                script {
+                    ngInstall()  // Calls vars/mvnInstall.groovy
+                }
+            }
+        }
       }
   }
