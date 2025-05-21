@@ -6,6 +6,9 @@ pipeline {
         SONARQUBE_SERVER = 'sonarqube-server'    // Server name configured
     }
 
+   tools {
+        nodejs 'nodejs-24.0.2' // The name you gave in Global Tool Configuration
+    }
     stages {
         stage('Install Dependencies') {
             steps {
