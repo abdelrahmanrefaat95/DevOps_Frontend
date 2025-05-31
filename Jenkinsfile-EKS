@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Deploy Frontend 1') {
+            steps {
+                echo "Applying frontend1 deployment and service"
+                sh '''
+                    kubectl apply -f k8s/frontend1/deployment.yaml
+                    kubectl apply -f k8s/frontend1/service.yaml
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Frontend deployments and services applied successfully!'
+        }
+        failure {
+            echo 'Failed to apply some frontend Kubernetes resources.'
+        }
+    }
+}
