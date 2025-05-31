@@ -1,12 +1,8 @@
-FROM node:18-alpine AS node
-
-# Install Angular CLI globally
-RUN npm install -g @angular/cli
-
-# Set up your application
+FROM node:18-alpine as build
 WORKDIR /app
 COPY . .
-RUN npm install
+RUN npm install && npm run build
 
-# Serve the Angular app using Angular CLI's development server
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+FROM nginx:alpine
+COPY --from=build /app/dist/angularclient /usr/share/nginx/html
+EXPOSE 80

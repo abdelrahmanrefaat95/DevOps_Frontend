@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-app
+  namespace: devops-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: angular-app
+  template:
+    metadata:
+      labels:
+        app: angular-app
+    spec:
+      imagePullSecrets:
+        - name: registry-creds
+      containers:
+        - name: angular-container
+          image: shoroukimage/front:1.0
+          ports:
+            - containerPort: 80
+
