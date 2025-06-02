@@ -2,9 +2,7 @@
 
 pipeline {
   
-  agent {
-            label 'ubuntu-slave'  
-        }
+  agent any
   
   stages {
       stage('Hello') {
