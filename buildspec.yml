@@ -20,7 +20,7 @@ phases:
 
       # Deploy to static website bucket
       - echo Deploying to static website bucket...
-      - aws s3 sync dist/ s3://kimit-frontend-website/
+      - aws s3 sync dist/angularclient/ s3://kimit-frontend-website/
 
 artifacts:
   files:
