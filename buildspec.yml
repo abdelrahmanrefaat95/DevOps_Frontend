@@ -1,0 +1,33 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      # Install dependencies
+      - echo Installing dependencies...
+      - npm install 
+      
+  build:
+    commands:
+      # Build the application
+      - echo Building the application...
+      - npm run build 
+      
+  post_build:
+    commands:
+
+      # Deploy to static website bucket
+      - echo Deploying to static website bucket...
+      - aws s3 sync dist/ s3://kimit-frontend-website/
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'dist'
+  discard-paths: no
+  
+cache:
+  paths:
+    - 'node_modules/**/*'
